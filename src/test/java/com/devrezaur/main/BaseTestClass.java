@@ -22,4 +22,12 @@ public abstract class BaseTestClass {
         this.client.shutdown();
     }
 
+    protected void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
