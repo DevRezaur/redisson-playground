@@ -14,12 +14,11 @@ public class RedissonConfig {
     public RedissonClient getRedissonClient() {
         if (Objects.isNull(this.redissonClient)) {
             Config config = new Config();
-            config.useSingleServer().setAddress("redis://127.0.0.1:6379");
+            config.useSingleServer().setAddress("redis://127.0.0.1:6380");
             redissonClient = Redisson.create(config);
         }
         return redissonClient;
     }
-
 
     public RedissonReactiveClient getRedissonReactiveClient() {
         return getRedissonClient().reactive();
