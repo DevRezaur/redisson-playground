@@ -57,6 +57,9 @@ public class KeyValueTest extends BaseTestClass {
                 .expectNextCount(1)
                 .verifyComplete();
 
+        // Printing the expiry time in console
+        bucket.remainTimeToLive().doOnNext(System.out::println).block();
+
         // Extend the expiry time
         Mono<Boolean> extend = bucket.expire(Duration.ofSeconds(3));
 
@@ -65,6 +68,9 @@ public class KeyValueTest extends BaseTestClass {
                 .create(extend)
                 .expectNext(true)
                 .verifyComplete();
+
+        // Printing the expiry time in console after extending the time
+        bucket.remainTimeToLive().doOnNext(System.out::println).block();
 
         // Testing if the key exist in redis after 2 seconds
         sleep(2000);
