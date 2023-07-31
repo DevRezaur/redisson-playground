@@ -25,7 +25,7 @@ public class BucketAsMapTest extends BaseTestClass {
 
         // Get multiple key-value data as map from redis
         Mono<Map<String, Object>> get = this.client.getBuckets(StringCodec.INSTANCE)
-                .get("user:1:name", "user:2:name", "user:3:name").doOnNext(System.out::println);
+                .get("user:1:name", "user:2:name", "user:3:name");
 
         // Test the retrieved values from redis
         StepVerifier
