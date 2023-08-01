@@ -12,7 +12,7 @@ import reactor.test.StepVerifier;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-/*
+/**
  * Due to CPU usage issue ExpiredObjectListener is disabled by default.
  * To enable this, run this comment in redis-cli "config set notify-keyspace-events AKE"
  */
