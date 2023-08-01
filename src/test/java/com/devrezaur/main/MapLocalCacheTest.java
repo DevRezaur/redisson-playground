@@ -31,9 +31,11 @@ public class MapLocalCacheTest extends BaseTestClass {
 
     @BeforeAll
     public void setClient() {
+        // Creating non-reactive redisson client. Since local cache map is available for non-reactive client.
         RedissonConfig redissonConfig = new RedissonConfig();
         RedissonClient redissonClient = redissonConfig.getRedissonClient();
 
+        // Setting up sync strategy & reconnect strategy
         LocalCachedMapOptions<Integer, Student> options =
                 LocalCachedMapOptions
                         .<Integer, Student>defaults()
@@ -52,17 +54,20 @@ public class MapLocalCacheTest extends BaseTestClass {
 
     @Test
     public void appServer1() {
+        // Set some map data in redis
         Student student1 = new Student("Rezaur Rahman", 25, "Dhaka", List.of("Physics", "Biology"));
-
         this.map.put(1, student1);
 
+        // Printing up the map data with 1 second interval
         Flux.interval(Duration.ofSeconds(1)).doOnNext(i -> System.out.println(i + " -> " + map.get(1))).subscribe();
 
+        // Sleeping for 1 min. This will ensure that the method runs for 1 min.
         sleep(60000);
     }
 
     @Test
     public void appServer2() {
+        // Updating the map data set in "appServer1" method
         Student student1 = new Student("Rezaur Rahman - Updated", 25, "Dhaka", List.of("Physics", "Biology"));
         this.map.put(1, student1);
     }
