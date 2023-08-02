@@ -45,8 +45,8 @@ public class MapLocalCacheTest extends BaseTestClass {
         map = redissonClient.getLocalCachedMap(
                 "students",
                 new TypedJsonJacksonCodec(Integer.class, Student.class),
-                options)
-        ;
+                options
+        );
     }
 
     @AfterAll
