@@ -64,6 +64,8 @@ public class MessageQueueTest extends BaseTestClass {
                             .then();
 
         // Verify the execution is successful or not
-        StepVerifier.create(mono).verifyComplete();
+        StepVerifier
+                .create(mono)
+                .verifyComplete();
     }
 }
